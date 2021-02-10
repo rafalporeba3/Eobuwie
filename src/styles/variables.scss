@@ -1,0 +1,21 @@
+:root {
+  // Colors
+  --black: #{hex-to-rgb('#000000')};
+
+  // Fonts
+  --primary-font: Roboto, Arial, Helvetica, sans-serif;
+  --font-size-13: 1.3rem;
+  --font-size-14: 1.4rem;
+  --font-size-16: 1.6rem;
+
+  // Font
+  --font-regular: 400;
+  --font-bold: 700;
+
+  // Icons
+  --default-icon-height: 3rem;
+  --default-icon-width: 3rem;
+
+  // Global
+  --one-rem-value: 10px;
+}
