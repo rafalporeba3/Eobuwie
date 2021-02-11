@@ -1,9 +1,9 @@
-import { VueRouter } from 'vue-router/types/router';
 import { Store }     from 'vuex';
 import { RootState } from '@/store/store.types';
+import { VueRouter } from 'vue-router/types/router';
 
 export interface Providers {
-  router: VueRouter | null;
+  router?: VueRouter | null;
   store: Store<RootState> | null;
 }
 

@@ -1,12 +1,15 @@
 :root {
   // Colors
-  --black: #{hex-to-rgb('#000000')};
+  --black: #{hex-to-rgb(#000)};
+  --primary-grey: #{hex-to-rgb(#e3e3e3)};
+  --grey-500: #{hex-to-rgb(#c4c4c4)};
 
   // Fonts
   --primary-font: Roboto, Arial, Helvetica, sans-serif;
   --font-size-13: 1.3rem;
   --font-size-14: 1.4rem;
   --font-size-16: 1.6rem;
+  --font-size-20: 2rem;
 
   // Font
   --font-regular: 400;
