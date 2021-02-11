@@ -1,6 +1,7 @@
 import { shallowMount, Wrapper }            from '@vue/test-utils';
 import { reservationFormConfigurationMock } from '@/components/reservation-form/__tests__/reservation-form-mock';
 import cPrice                               from '@/components/price/price.component.vue';
+import cReviews                             from '@/components/reviews/reviews.component.vue';
 import cReservationForm                     from '../reservation-form.component.vue';
 
 describe('Reservation form', () => {
@@ -26,6 +27,13 @@ describe('Reservation form', () => {
     const priceComponent: Wrapper<any> = wrapper.findComponent(cPrice);
 
     expect(priceComponent.exists())
+      .toBeTruthy();
+  });
+
+  it('should contain cReviews component', () => {
+    const reviewsComponent: Wrapper<any> = wrapper.findComponent(cReviews);
+
+    expect(reviewsComponent.exists())
       .toBeTruthy();
   });
 

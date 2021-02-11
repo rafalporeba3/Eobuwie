@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Reservation form should match snapshot 1`] = `
-<div class="c-reservation-form">
-  <c-price-stub price="100"></c-price-stub>
-</div>
-`;

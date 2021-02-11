@@ -1,18 +1,23 @@
 <template>
   <div class="c-reservation-form">
     <c-price :price="reservationFormConfiguration.price" />
+
+    <c-reviews :rating="reservationFormConfiguration.rating"
+               :reviews="reservationFormConfiguration.reviews" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType }    from '@vue/composition-api';
 import cPrice                           from '@/components/price/price.component.vue';
+import cReviews                         from '@/components/reviews/reviews.component.vue';
 import { ReservationFormConfiguration } from '@/components/reservation-form/reservation-form.types';
 
 export default defineComponent({
   name: 'cReservationForm',
   components: {
     cPrice,
+    cReviews,
   },
   props: {
     reservationFormConfiguration: {
@@ -31,7 +36,6 @@ export default defineComponent({
   border: $f1 solid rgb(var(--grey-500));
   background-color: rgb(var(--primary-grey));
   display: flex;
-  margin: $f55 $f89 $f55;
-  width: 30rem;
+  flex-direction: column;
 }
 </style>

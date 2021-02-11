@@ -1,6 +1,8 @@
 <template>
   <div class="v-dashboard">
-    <c-reservation-form :reservationFormConfiguration="reservationFormConfiguration" />
+    <div class="v-dashboard__wrapper">
+      <c-reservation-form :reservationFormConfiguration="reservationFormConfiguration" />
+    </div>
   </div>
 </template>
 
@@ -19,7 +21,7 @@ export default defineComponent({
       availableDates: [],
       disabledDates: [],
       price: 298,
-      rating: 4.5,
+      rating: 5,
       reviews: 123,
       selectedDates: [ '15.02.2021', '25.02.2021' ],
     });
@@ -37,7 +39,12 @@ export default defineComponent({
 .v-dashboard {
   flex: 1;
   width: 100%;
-  background-color: rgb(var(--primary-grey));
 
+  &__wrapper {
+    margin: $f55 $f89 $f55;
+    padding: $f34;
+    width: 40rem;
+    background-color: rgb(var(--primary-grey));
+  }
 }
 </style>

@@ -1,8 +1,7 @@
-import Vuex, { Store }               from 'vuex';
+import Vuex                          from 'vuex';
 import { createLocalVue, Wrapper }   from '@vue/test-utils';
 import CompositionApi                from '@vue/composition-api';
 import { createTestInstanceShallow } from '@/__tests__/factory';
-import { RootState }                 from '@/store/store.types';
 import cPrice                        from '../price.component.vue';
 
 const localVue = createLocalVue();
@@ -11,12 +10,10 @@ localVue.use(Vuex);
 
 describe('Price component', () => {
   let wrapper!: Wrapper<any>;
-  let store!: Store<RootState>;
 
   beforeEach(() => {
     const {
       wrapperInstance,
-      storeInstance,
     } = createTestInstanceShallow(cPrice, {
       localVue,
       propsData: {
@@ -24,7 +21,6 @@ describe('Price component', () => {
       },
     });
     wrapper = wrapperInstance;
-    store = storeInstance;
   });
 
   it('should render cReservationForm component with proper class', () => {
