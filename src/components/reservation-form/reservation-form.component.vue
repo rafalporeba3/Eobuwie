@@ -4,6 +4,8 @@
 
     <c-reviews :rating="reservationFormConfiguration.rating"
                :reviews="reservationFormConfiguration.reviews" />
+
+    <c-separator />
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 import { defineComponent, PropType }    from '@vue/composition-api';
 import cPrice                           from '@/components/price/price.component.vue';
 import cReviews                         from '@/components/reviews/reviews.component.vue';
+import cSeparator                       from '@/components/separator/separator.component.vue';
 import { ReservationFormConfiguration } from '@/components/reservation-form/reservation-form.types';
 
 export default defineComponent({
@@ -18,6 +21,7 @@ export default defineComponent({
   components: {
     cPrice,
     cReviews,
+    cSeparator,
   },
   props: {
     reservationFormConfiguration: {
