@@ -3,7 +3,6 @@ import Vuex                                      from 'vuex';
 import { createTestInstanceShallow }             from '@/__tests__/factory';
 import CompositionApi                            from '@vue/composition-api';
 import cStarIcon                                 from '@/components/icons/star.component.vue';
-import cStarHalfIcon                             from '@/components/icons/star-half.component.vue';
 import cReviews                                  from '../reviews.component.vue';
 
 const localVue = createLocalVue();
@@ -50,14 +49,7 @@ describe('Reviews component', () => {
     const starComponents: WrapperArray<any> = wrapper.findAllComponents(cStarIcon);
 
     expect(starComponents.length)
-      .toEqual(4);
-  });
-
-  it('should display correct number of half stars', () => {
-    const starHalfComponents: WrapperArray<any> = wrapper.findAllComponents(cStarHalfIcon);
-
-    expect(starHalfComponents.length)
-      .toEqual(1);
+      .toEqual(5);
   });
 
   it('should match snapshot', () => {

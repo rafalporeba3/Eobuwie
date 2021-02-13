@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reviews component should match snapshot 1`] = `
+<div class="c-reviews">
+  <c-star-icon-stub isfullstar="true"></c-star-icon-stub>
+  <c-star-icon-stub isfullstar="true"></c-star-icon-stub>
+  <c-star-icon-stub isfullstar="true"></c-star-icon-stub>
+  <c-star-icon-stub ishalfstar="true"></c-star-icon-stub>
+  <c-star-icon-stub></c-star-icon-stub> <span class="c-reviews__count">123</span>
+</div>
+`;

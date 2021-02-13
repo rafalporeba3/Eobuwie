@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Date picker editor component should match snapshot 1`] = `
+<div class="c-date-picker-editor"><span class="c-date-picker-editor__placeholder">Start placeholder</span>
+  <c-arrow-right-icon-stub></c-arrow-right-icon-stub> <span class="c-date-picker-editor__placeholder">End placeholder</span>
+</div>
+`;

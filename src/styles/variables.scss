@@ -1,14 +1,15 @@
 :root {
   // root colors
-  --root-grey-500: #b0b0b0;
+  --root-grey-500: #bfbfbf;
   --root-green-500: #006105;
 
   // Colors
   --black: #{hex-to-rgb(#000)};
   --white: #{hex-to-rgb(#fff)};
   --primary-grey: #{hex-to-rgb(#ebebeb)};
-  --grey-500: #{hex-to-rgb(#b0b0b0)};
+  --grey-500: #{hex-to-rgb(#bfbfbf)};
   --green-500: #{hex-to-rgb(#006105)};
+  --green-300: #{hex-to-rgb(#34c7ac)};
 
   // Fonts
   --primary-font: Roboto, Arial, Helvetica, sans-serif;

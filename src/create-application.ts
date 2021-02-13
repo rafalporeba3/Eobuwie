@@ -1,17 +1,19 @@
-import Vue               from 'vue';
-import Vuex              from 'vuex';
-import Router            from 'vue-router';
-import VueCompositionApi from '@vue/composition-api';
-import Root              from '@/root/root.vue';
-import routerRoutes      from '@/router/router.routes';
-import storeConfig       from './store/store.config';
-import { Providers }     from './providers';
+import Vue                       from 'vue';
+import Vuex                      from 'vuex';
+import Router                    from 'vue-router';
+import VueCompositionApi         from '@vue/composition-api';
+import Root                      from '@/root/root.vue';
+import routerRoutes              from '@/router/router.routes';
+import { clickOutsideDirective } from '@/directives/click-outside/click-outside.directive';
+import storeConfig               from './store/store.config';
+import { Providers }             from './providers';
 
 // Expose a factory function that creates a fresh set of store, router,
 const createApplication = (providers: Providers) => {
   Vue.use(VueCompositionApi);
   Vue.use(Vuex);
   Vue.use(Router);
+  Vue.directive('click-outside', clickOutsideDirective);
 
   Vue.config.productionTip = false;
 

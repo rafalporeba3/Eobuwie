@@ -1,0 +1,31 @@
+<template>
+  <svg class="c-arrow-right"
+       viewBox="0 0 123.964 123.964"
+       xmlns="http://www.w3.org/2000/svg">
+
+    <path d="M121.7,57.681L83,26.881c-4-3.1-10-0.3-10,4.8v10.3c0,3.3-2.2,6.2-5.5,6.2H6c-3.3,0-6,2.4-6,5.8v16.2c0,3.2,2.7,6,6,6h61.5
+             c3.3,0,5.5,2.601,5.5,5.9v10.3c0,5,6,7.8,9.9,4.7l38.6-30C124.7,64.781,124.8,60.081,121.7,57.681z" />
+  </svg>
+</template>
+
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api';
+
+export default defineComponent({
+  name: 'cArrowRightIcon',
+});
+</script>
+
+<style lang="scss"
+       scoped>
+
+.c-arrow-right {
+  height: var(--default-icon-height);
+  width: var(--default-icon-width);
+
+  path {
+    fill: currentColor;
+  }
+}
+
+</style>
