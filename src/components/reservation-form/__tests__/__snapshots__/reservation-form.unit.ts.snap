@@ -5,6 +5,6 @@ exports[`Reservation form should match snapshot 1`] = `
   <c-price-stub price="100"></c-price-stub>
   <c-reviews-stub rating="4" reviews="50"></c-reviews-stub>
   <c-separator-stub></c-separator-stub>
-  <c-date-picker-stub availabledates="2021-02-10,2021-02-28" disableddates="2021-02-10,2021-02-28" selecteddates="2021-02-12,2021-02-18"></c-date-picker-stub>
+  <c-date-picker-stub disableddates="2021-02-08,2021-02-09" selecteddates="2021-02-12,2021-02-18"></c-date-picker-stub>
 </div>
 `;

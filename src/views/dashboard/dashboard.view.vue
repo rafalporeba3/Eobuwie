@@ -18,12 +18,11 @@ export default defineComponent({
   },
   setup() {
     const reservationFormConfiguration: ReservationFormConfiguration = reactive({
-      availableDates: [],
-      disabledDates: [],
+      disabledDates: [ '2021-02-02', '2021-02-08' ],
       price: 298,
       rating: 4.5,
       reviews: 123,
-      selectedDates: [ '15.02.2021', '25.02.2021' ],
+      selectedDates: [ '2021-02-18', '2021-02-23' ],
     });
 
     return {

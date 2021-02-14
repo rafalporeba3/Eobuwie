@@ -21,13 +21,16 @@ describe('Date picker component', () => {
       localVue,
       propsData: {
         options: {},
-        availableDates: [],
         selectedDates: [],
         disabledDates: [],
       },
     });
 
     wrapper = wrapperInstance;
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('should render cDatePicker component with correct class', () => {

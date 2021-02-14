@@ -7,8 +7,7 @@
 
     <c-separator />
 
-    <c-date-picker :available-dates="reservationFormConfiguration.availableDates"
-                   :disabled-dates="reservationFormConfiguration.availableDates"
+    <c-date-picker :disabled-dates="reservationFormConfiguration.disabledDates"
                    :selected-dates="reservationFormConfiguration.selectedDates"
                    :options="datePickerOptions" />
 

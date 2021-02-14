@@ -3,6 +3,6 @@
 exports[`Date picker component should match snapshot 1`] = `
 <c-date-picker-wrapper-stub class="c-date-picker">
   <c-date-picker-editor-stub startplaceholder="Start" endplaceholder="End"></c-date-picker-editor-stub>
-  <c-date-picker-panel-stub options="[object Object]" availabledates="" disableddates="" selecteddates="" style="display: none;"></c-date-picker-panel-stub>
+  <c-date-picker-panel-stub options="[object Object]" disableddates="" selecteddates="" style="display: none;"></c-date-picker-panel-stub>
 </c-date-picker-wrapper-stub>
 `;

@@ -46,8 +46,9 @@ export default defineComponent({
     padding: $f13 $f21;
     justify-items: center;
     align-items: center;
-    grid-gap: $f21;
-    grid-template-columns: repeat(7, [col-start] 1fr [col-end]);
+    grid-row-gap: $f13;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
     border: $f1 solid rgba(var(--grey-500), .5);
   }
 }

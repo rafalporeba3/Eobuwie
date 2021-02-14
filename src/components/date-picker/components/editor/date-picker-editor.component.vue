@@ -62,7 +62,13 @@ export default defineComponent({
   &__placeholder {
     font-size: var(--font-size-14);
     font-weight: var(--font-regular);
-    padding: $f5;
+    padding: $f2 $f5;
+    flex: 0 0 40%;
+
+    &:first-of-type {
+      background-color: rgba(var(--green-300), .4);
+      color: rgb(var(--black));
+    }
   }
 }
 
