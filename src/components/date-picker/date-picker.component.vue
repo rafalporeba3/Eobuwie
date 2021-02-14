@@ -74,7 +74,7 @@ export default defineComponent({
       getCurrentMonthDays,
       onPreviousClick,
       onNextClick,
-    } = useDateManagerHook(context);
+    } = useDateManagerHook();
 
     const selectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
     const lastSelectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
