@@ -51,11 +51,11 @@ export default defineComponent({
 
   &--active {
     @include fast-transition(border-color);
-    border-color: rgb(var(--green-300));
+    border-color: rgb(var(--primary-green));
 
     .c-arrow-right {
       @include fast-transition(color);
-      color: rgb(var(--green-300));
+      color: rgb(var(--primary-green));
     }
   }
 
@@ -66,7 +66,7 @@ export default defineComponent({
     flex: 0 0 40%;
 
     &:first-of-type {
-      background-color: rgba(var(--green-300), .4);
+      background-color: rgba(var(--primary-green), .4);
       color: rgb(var(--black));
     }
   }

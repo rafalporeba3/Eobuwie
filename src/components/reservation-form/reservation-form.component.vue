@@ -8,9 +8,14 @@
     <c-separator />
 
     <c-date-picker :disabled-dates="reservationFormConfiguration.disabledDates"
+                   :options="datePickerOptions"
                    :selected-dates="reservationFormConfiguration.selectedDates"
-                   :options="datePickerOptions" />
+                   @onSelectedDateUpdate="onDateUpdate" />
 
+    <c-button class="c-button"
+              @click.native="onFormSubmit">
+      Submit
+    </c-button>
   </div>
 </template>
 
@@ -20,8 +25,10 @@ import cPrice                           from '@/components/price/price.component
 import cReviews                         from '@/components/reviews/reviews.component.vue';
 import cSeparator                       from '@/components/separator/separator.component.vue';
 import cDatePicker                      from '@/components/date-picker/date-picker.component.vue';
+import cButton                          from '@/components/button/button.component.vue';
 import { ReservationFormConfiguration } from '@/components/reservation-form/reservation-form.types';
 import { DatePickerOptions }            from '@/components/date-picker/date-picker.types';
+import { useSelectedDateManagerHook }   from '@/components/reservation-form/hooks/selected-date-manager.hook';
 
 export default defineComponent({
   name: 'cReservationForm',
@@ -30,6 +37,7 @@ export default defineComponent({
     cReviews,
     cSeparator,
     cDatePicker,
+    cButton,
   },
   props: {
     reservationFormConfiguration: {
@@ -37,15 +45,22 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props, context) {
     const datePickerOptions: DatePickerOptions = {
       endPlaceholder: 'Check Out',
       startPlaceholder: 'Check In',
       title: 'Dates',
     };
 
+    const {
+      onDateUpdate,
+      onFormSubmit,
+    } = useSelectedDateManagerHook(context);
+
     return {
       datePickerOptions,
+      onDateUpdate,
+      onFormSubmit,
     };
   },
 });
@@ -60,5 +75,22 @@ export default defineComponent({
   background-color: rgb(var(--primary-grey));
   display: flex;
   flex-direction: column;
+  min-width: 34rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: -$f1;
+    left: -$f1;
+    right: -$f1;
+    bottom: -$f1;
+    box-shadow: 0 0 0 $f34 rgb(var(--primary-grey));;
+  }
+
+  .c-button {
+    margin-top: $f21;
+  }
 }
 </style>

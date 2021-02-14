@@ -5,6 +5,9 @@ exports[`Reservation form should match snapshot 1`] = `
   <c-price-stub price="100"></c-price-stub>
   <c-reviews-stub rating="4" reviews="50"></c-reviews-stub>
   <c-separator-stub></c-separator-stub>
-  <c-date-picker-stub disableddates="2021-02-08,2021-02-09" selecteddates="2021-02-12,2021-02-18"></c-date-picker-stub>
+  <c-date-picker-stub options="[object Object]" disableddates="2021-02-08,2021-02-09" selecteddates="2021-02-12,2021-02-18"></c-date-picker-stub>
+  <c-button-stub class="c-button">
+    Submit
+  </c-button-stub>
 </div>
 `;

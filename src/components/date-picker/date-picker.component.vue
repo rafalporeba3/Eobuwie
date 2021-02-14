@@ -67,17 +67,17 @@ export default defineComponent({
       default: () => [],
     },
   },
-  setup(props) {
+  setup(props, context) {
     const {
       currentMonth,
       currentYear,
       getCurrentMonthDays,
       onPreviousClick,
       onNextClick,
-    } = useDateManagerHook();
+    } = useDateManagerHook(context);
 
-    const selectedDateRange: Ref<string[]> = ref(props.selectedDates);
-    const lastSelectedDateRange: Ref<string[]> = ref(props.selectedDates);
+    const selectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
+    const lastSelectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
     const isPanelVisible: Ref<boolean> = ref(false);
 
     const changePanelVisibility = (): void => {
@@ -102,6 +102,9 @@ export default defineComponent({
         selectedDateRange.value = [ date ];
       } else if (selectedDateRange.value.length === 1) {
         selectedDateRange.value = [ selectedDateRange.value[ 0 ], date ];
+
+        context.emit('onSelectedDateUpdate', selectedDateRange.value);
+        onPanelClose();
       }
     };
 

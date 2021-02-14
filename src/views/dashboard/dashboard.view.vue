@@ -1,8 +1,19 @@
 <template>
   <div class="v-dashboard">
-    <div class="v-dashboard__wrapper">
-      <c-reservation-form :reservationFormConfiguration="reservationFormConfiguration" />
-    </div>
+    <c-reservation-form :reservationFormConfiguration="reservationFormConfiguration"
+                        @onFormSubmit="onFormSubmit" />
+
+    <section class="v-dashboard__visualization">
+      <span class="v-dashboard__visualization__key">Configuration:</span>
+
+      <div v-for="(value, key) in reservationFormConfiguration"
+           :key="key"
+           class="v-dashboard__visualization__wrapper">
+
+        <span class="v-dashboard__visualization__key">{{ key }}: </span>
+        <span>{{ value }}</span>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -25,8 +36,12 @@ export default defineComponent({
       selectedDates: [ '2021-02-18', '2021-02-23' ],
     });
 
+    const onFormSubmit = (dateRange: string[]): void => {
+      reservationFormConfiguration.selectedDates = dateRange;
+    };
     return {
       reservationFormConfiguration,
+      onFormSubmit,
     };
   },
 });
@@ -38,14 +53,29 @@ export default defineComponent({
 .v-dashboard {
   display: flex;
   align-items: flex-start;
+  width: 100%;
+  margin: $f144;
   justify-content: center;
 
-  &__wrapper {
-    margin: $f55 $f89 $f55;
-    padding: $f34;
-    width: 40rem;
-    min-height: 0;
+  &__visualization {
+    display: flex;
+    flex-direction: column;
     background-color: rgb(var(--primary-grey));
+    padding: $f21;
+    margin-left: $f144;
+
+    &__wrapper {
+      padding: $f3 0;
+    }
+
+    &__key {
+      &:first-of-type {
+        margin-bottom: $f13;
+      }
+
+      font-weight: var(--font-bold);
+      margin-right: $f5;
+    }
   }
 }
 </style>

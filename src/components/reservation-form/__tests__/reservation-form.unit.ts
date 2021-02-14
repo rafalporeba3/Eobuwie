@@ -1,14 +1,19 @@
-import { shallowMount, Wrapper }            from '@vue/test-utils';
-import { reservationFormConfigurationMock } from '@/components/reservation-form/__tests__/reservation-form-mock';
-import cPrice                               from '@/components/price/price.component.vue';
-import cReviews                             from '@/components/reviews/reviews.component.vue';
-import cReservationForm                     from '../reservation-form.component.vue';
+import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import CompositionApi                            from '@vue/composition-api';
+import { reservationFormConfigurationMock }      from '@/components/reservation-form/__tests__/reservation-form-mock';
+import cPrice                                    from '@/components/price/price.component.vue';
+import cReviews                                  from '@/components/reviews/reviews.component.vue';
+import cReservationForm                          from '../reservation-form.component.vue';
+
+const localVue = createLocalVue();
+localVue.use(CompositionApi);
 
 describe('Reservation form', () => {
   let wrapper!: Wrapper<any>;
 
   beforeEach(() => {
     wrapper = shallowMount(cReservationForm, {
+      localVue,
       propsData: { reservationFormConfiguration: reservationFormConfigurationMock },
     });
   });

@@ -1,4 +1,4 @@
-import { weekDayNames }                        from '@/components/date-picker/helpers/date-manager.variables';
+import { weekDayNames }                     from '@/components/date-picker/helpers/date-manager.variables';
 import { generateCurrentMonth, getEachDay } from '../date-manager.helper';
 
 it('getEachDay should generate correct array of dates in provided range', () => {

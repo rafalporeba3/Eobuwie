@@ -70,7 +70,7 @@ export default defineComponent({
   cursor: pointer;
 
   &:not(&--disabled):not(&--selected):hover {
-    color: rgb(var(--green-300));
+    color: rgb(var(--primary-green));
   }
 
   &--end {
@@ -83,9 +83,9 @@ export default defineComponent({
 
   &--today {
     border-radius: 50%;
-    border: $f2 solid rgb(var(--green-300));
+    border: $f2 solid rgb(var(--primary-green));
     background-color: transparent;
-    color: rgb(var(--green-300));
+    color: rgb(var(--primary-green));
   }
 
   &--today.c-date-picker-day--selected {
@@ -101,12 +101,12 @@ export default defineComponent({
 
   &--selected {
     color: rgb(var(--green-500));
-    background-color: rgba(var(--green-300), .2);
+    background-color: rgba(var(--primary-green), .2);
 
     &.c-date-picker-day--end,
     &.c-date-picker-day--start {
       position: relative;
-      background-color: rgb(var(--green-300));
+      background-color: rgb(var(--primary-green));
       border-radius: 50%;
       color: rgb(var(--white));
 
@@ -115,9 +115,9 @@ export default defineComponent({
         content: '';
         top: 0;
         bottom: 0;
-        z-index: -1;
+        z-index: 1;
         width: 50%;
-        background-color: rgba(var(--green-300), .2);
+        background-color: rgba(var(--primary-green), .2);
       }
     }
 

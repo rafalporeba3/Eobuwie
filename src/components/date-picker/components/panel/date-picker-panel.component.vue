@@ -32,13 +32,13 @@ export default defineComponent({
   transform: translateY(100%);
 
   &__header {
-    background-color: rgb(var(--green-300));
+    background-color: rgb(var(--primary-green));
     padding: $f13 $f21;
     color: rgb(var(--white));
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: $f1 solid rgb(var(--green-300));
+    border: $f1 solid rgb(var(--primary-green));
   }
 
   &__content {
@@ -48,6 +48,7 @@ export default defineComponent({
     align-items: center;
     grid-row-gap: $f13;
     grid-template-columns: repeat(7, minmax(0, 1fr));
+    background-color: rgb(var(--white));
     grid-template-rows: minmax(0, 1fr);
     border: $f1 solid rgba(var(--grey-500), .5);
   }
