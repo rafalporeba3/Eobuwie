@@ -1,5 +1,5 @@
 import { eachDayOfInterval, format, getDate, getDay, getDaysInMonth } from 'date-fns';
-import { FORMAT, monthNames, weekNames }                              from '@/components/date-picker/helpers/date-manager.variables';
+import { FORMAT, monthNames, weekDayNames }                              from '@/components/date-picker/helpers/date-manager.variables';
 
 export const formatDate = (date: Date): string => format(date, FORMAT);
 
@@ -39,7 +39,7 @@ export const generateCurrentMonth = (currentYear: number, currentMonth: number):
   }
 
   if (lastDayOfWeek !== SATURDAY) {
-    for (let i = 1; i < weekNames.length - lastDayOfWeek; i += 1) {
+    for (let i = 1; i < weekDayNames.length - lastDayOfWeek; i += 1) {
       allDaysInNextMonth.push(formatNewDate(currentYear, currentMonth + 1, i));
     }
   }

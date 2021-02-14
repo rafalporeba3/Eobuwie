@@ -1,7 +1,7 @@
 import { createLocalVue, shallowMount, Wrapper, WrapperArray } from '@vue/test-utils';
 import CompositionApi                                          from '@vue/composition-api';
 import { Plugin }                                              from 'vue-fragment';
-import { weekNames }                                           from '@/components/date-picker/helpers/date-manager.variables';
+import { weekDayNames }                                           from '@/components/date-picker/helpers/date-manager.variables';
 import cDatePickerPanelContent                                 from '../date-picker-panel-content.component.vue';
 import cDatePickerDayOfWeek                                    from '../../day-of-week/date-picker-day-of-week.component.vue';
 import cDatePickerDay                                          from '../../day/date-picker-day.component.vue';
@@ -30,7 +30,7 @@ describe('Date picker panel content', () => {
 
   it('should render c-date-picker-day-of-week components equivalent to the number of days of the week', () => {
     expect(wrapper.findAllComponents(cDatePickerDayOfWeek).length)
-      .toEqual(weekNames.length);
+      .toEqual(weekDayNames.length);
   });
 
   it('should render c-date-picker-day components equivalent to the number of days of the current month', async () => {

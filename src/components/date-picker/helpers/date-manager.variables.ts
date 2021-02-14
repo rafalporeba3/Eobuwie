@@ -38,7 +38,7 @@ export const monthNames: string[] = [
   Months.DECEMBER,
 ];
 
-export const weekNames: string[] = [
+export const weekDayNames: string[] = [
   DaysOfWeekShort.SUNDAY,
   DaysOfWeekShort.MONDAY,
   DaysOfWeekShort.TUESDAY,

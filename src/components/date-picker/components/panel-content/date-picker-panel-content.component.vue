@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <c-date-picker-day-of-week v-for="dayOfWeek in weekNames"
+    <c-date-picker-day-of-week v-for="dayOfWeek in weekDayNames"
                                :key="dayOfWeek"
                                :day-of-week="dayOfWeek" />
 
@@ -22,7 +22,7 @@ import { defineComponent, PropType, watch } from '@vue/composition-api';
 import cDatePickerDayOfWeek                 from '../day-of-week/date-picker-day-of-week.component.vue';
 import cDatePickerDay                       from '../day/date-picker-day.component.vue';
 import { useDayManagerHook }                from '../../hooks/day-manager.hook';
-import { weekNames }                        from '../../helpers/date-manager.variables';
+import { weekDayNames }                        from '../../helpers/date-manager.variables';
 
 export default defineComponent({
   name: 'cDatePickerPanelContent',
@@ -71,7 +71,7 @@ export default defineComponent({
     });
 
     return {
-      weekNames,
+      weekDayNames,
       isDisabled,
       isSelected,
       isToday,
