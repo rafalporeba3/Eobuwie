@@ -10,6 +10,7 @@ interface UseDayManagerHook {
   isStartDate: (date: string) => boolean;
   updateHoverSelectedDates: (date: string) => void;
   clearHoverSelectedDates: () => void;
+  isDisabledDate: (dateRange: string[], date: string) => boolean;
 }
 
 export const useDayManagerHook = (props: {
@@ -48,10 +49,12 @@ export const useDayManagerHook = (props: {
     hoverSelectedDates.value = [];
   };
 
-  const updateHoverSelectedDates = (date: string): void => {
-    const isDisabledDate = disabledDates.value.includes(date) || disabledDates.value[ 0 ] > date;
+  const isDisabledDate = (dateRange: string[], date: string): boolean => disabledDates.value.includes(date)
+      || (disabledDates.value[ 0 ] > date && dateRange[ 0 ] > disabledDates.value[ disabledDates.value.length - 1 ])
+      || (disabledDates.value[ 0 ] < date && dateRange[ 0 ] < disabledDates.value[ 0 ]);
 
-    if (selectedDates.value.length === 1 && !isDisabledDate) {
+  const updateHoverSelectedDates = (date: string): void => {
+    if (selectedDates.value.length === 1 && !isDisabledDate(selectedDates.value as string[], date)) {
       hoverSelectedDates.value = getEachDay([ props.selectedDates[ 0 ], date ]);
     }
   };
@@ -64,5 +67,6 @@ export const useDayManagerHook = (props: {
     isStartDate,
     updateHoverSelectedDates,
     clearHoverSelectedDates,
+    isDisabledDate,
   };
 };

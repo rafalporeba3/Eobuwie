@@ -38,6 +38,7 @@ import { cloneDeep }                           from 'lodash-es';
 import { defineComponent, PropType, Ref, ref } from '@vue/composition-api';
 import { DatePickerOptions }                   from '@/components/date-picker/date-picker.types';
 import { isStartDateGraterThanEndDate }        from '@/components/date-picker/helpers/date-manager.helper';
+import { useDayManagerHook }                   from '@/components/date-picker/hooks/day-manager.hook';
 import cDatePickerWrapper                      from './components/wrapper/date-picker-wrapper.component.vue';
 import cDatePickerEditor                       from './components/editor/date-picker-editor.component.vue';
 import cDatePickerPanel                        from './components/panel/date-picker-panel.component.vue';
@@ -77,6 +78,10 @@ export default defineComponent({
       onNextClick,
     } = useDateManagerHook();
 
+    const {
+      isDisabledDate,
+    } = useDayManagerHook(props);
+
     const selectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
     const lastSelectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
     const isPanelVisible: Ref<boolean> = ref(false);
@@ -101,7 +106,7 @@ export default defineComponent({
 
       if (!selectedDateRange.value.length) {
         selectedDateRange.value = [ date ];
-      } else if (selectedDateRange.value.length === 1) {
+      } else if (selectedDateRange.value.length === 1 && !isDisabledDate(selectedDateRange.value, date)) {
         selectedDateRange.value = [ selectedDateRange.value[ 0 ], date ];
 
         if (isStartDateGraterThanEndDate(selectedDateRange.value)) {
