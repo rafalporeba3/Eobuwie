@@ -20,15 +20,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType }    from '@vue/composition-api';
-import cPrice                           from '@/components/price/price.component.vue';
-import cReviews                         from '@/components/reviews/reviews.component.vue';
-import cSeparator                       from '@/components/separator/separator.component.vue';
-import cDatePicker                      from '@/components/date-picker/date-picker.component.vue';
-import cButton                          from '@/components/button/button.component.vue';
-import { ReservationFormConfiguration } from '@/components/reservation-form/reservation-form.types';
-import { DatePickerOptions }            from '@/components/date-picker/date-picker.types';
-import { useSelectedDateManagerHook }   from '@/components/reservation-form/hooks/selected-date-manager.hook';
+import { defineComponent, PropType, ref, Ref } from '@vue/composition-api';
+import cPrice                                  from '@/components/price/price.component.vue';
+import cReviews                                from '@/components/reviews/reviews.component.vue';
+import cSeparator                              from '@/components/separator/separator.component.vue';
+import cDatePicker                             from '@/components/date-picker/date-picker.component.vue';
+import cButton                                 from '@/components/button/button.component.vue';
+import { ReservationFormConfiguration }        from '@/components/reservation-form/reservation-form.types';
+import { DatePickerOptions }                   from '@/components/date-picker/date-picker.types';
 
 export default defineComponent({
   name: 'cReservationForm',
@@ -46,16 +45,21 @@ export default defineComponent({
     },
   },
   setup(props, context) {
+    const selectedDates: Ref<string[]> = ref([]);
+
     const datePickerOptions: DatePickerOptions = {
       endPlaceholder: 'Check Out',
       startPlaceholder: 'Check In',
       title: 'Dates',
     };
 
-    const {
-      onDateUpdate,
-      onFormSubmit,
-    } = useSelectedDateManagerHook(context);
+    const onDateUpdate = (dateRange: string[]): void => {
+      selectedDates.value = dateRange;
+    };
+
+    const onFormSubmit = (): void => {
+      context.emit('onFormSubmit', selectedDates.value.length ? selectedDates.value : props.reservationFormConfiguration.selectedDates);
+    };
 
     return {
       datePickerOptions,
