@@ -37,6 +37,7 @@
 import { cloneDeep }                           from 'lodash-es';
 import { defineComponent, PropType, Ref, ref } from '@vue/composition-api';
 import { DatePickerOptions }                   from '@/components/date-picker/date-picker.types';
+import { isStartDateGraterThanEndDate }        from '@/components/date-picker/helpers/date-manager.helper';
 import cDatePickerWrapper                      from './components/wrapper/date-picker-wrapper.component.vue';
 import cDatePickerEditor                       from './components/editor/date-picker-editor.component.vue';
 import cDatePickerPanel                        from './components/panel/date-picker-panel.component.vue';
@@ -102,6 +103,10 @@ export default defineComponent({
         selectedDateRange.value = [ date ];
       } else if (selectedDateRange.value.length === 1) {
         selectedDateRange.value = [ selectedDateRange.value[ 0 ], date ];
+
+        if (isStartDateGraterThanEndDate(selectedDateRange.value)) {
+          selectedDateRange.value = [ selectedDateRange.value[ 1 ], selectedDateRange.value[ 0 ] ];
+        }
 
         context.emit('onSelectedDateUpdate', selectedDateRange.value);
         onPanelClose();

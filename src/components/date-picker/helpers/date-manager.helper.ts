@@ -1,17 +1,16 @@
 import { eachDayOfInterval, format, getDate, getDay, getDaysInMonth } from 'date-fns';
-import { FORMAT, monthNames, weekDayNames }                              from '@/components/date-picker/helpers/date-manager.variables';
+import { FORMAT, monthNames, weekDayNames }                           from '@/components/date-picker/helpers/date-manager.variables';
 
 export const formatDate = (date: Date): string => format(date, FORMAT);
 
 export const formatNewDate = (year: number, month: number, day: number): string => formatDate(new Date(year, month, day));
+export const isStartDateGraterThanEndDate = (range: string[]): boolean => range[ 0 ] > range[ range.length - 1 ];
 
 export const getEachDay = (range: string[]): string[] => {
   if (range.length) {
-    const isStartDateGraterThanEndDate: boolean = range[ 0 ] > range[ range.length - 1 ];
-
     return eachDayOfInterval({
-      start: new Date(isStartDateGraterThanEndDate ? range[ range.length - 1 ] : range[ 0 ]),
-      end: new Date(!isStartDateGraterThanEndDate ? range[ range.length - 1 ] : range[ 0 ]),
+      start: new Date(isStartDateGraterThanEndDate(range) ? range[ range.length - 1 ] : range[ 0 ]),
+      end: new Date(!isStartDateGraterThanEndDate(range) ? range[ range.length - 1 ] : range[ 0 ]),
     })
       .map((date: Date) => formatDate(date));
   }
