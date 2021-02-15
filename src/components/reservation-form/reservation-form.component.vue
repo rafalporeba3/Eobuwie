@@ -27,6 +27,7 @@ import cSeparator                              from '@/components/separator/sepa
 import cDatePicker                             from '@/components/date-picker/date-picker.component.vue';
 import cButton                                 from '@/components/button/button.component.vue';
 import { ReservationFormConfiguration }        from '@/components/reservation-form/reservation-form.types';
+import { BasicDatePickerOptions }              from '@/components/date-picker/date-picker.types';
 
 export default defineComponent({
   name: 'cReservationForm',

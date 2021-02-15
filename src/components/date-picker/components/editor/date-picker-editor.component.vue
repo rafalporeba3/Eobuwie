@@ -38,7 +38,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const isPlaceholderActive = (placeholder: string): boolean => ![ DatePickerPlaceholders.START, DatePickerPlaceholders.END ].includes(placeholder);
+    const isPlaceholderActive = (placeholder: string): boolean => !([ DatePickerPlaceholders.START, DatePickerPlaceholders.END ] as string[]).includes(placeholder);
     const getClassIfElementIsActive = (placeholder: string): string | null => (isPlaceholderActive(placeholder) ? 'c-date-picker-editor__placeholder--active' : null);
 
     return {

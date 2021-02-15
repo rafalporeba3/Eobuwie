@@ -57,7 +57,7 @@ export default defineComponent({
   props: {
     options: {
       type: Object as PropType<BasicDatePickerOptions>,
-      required: false,
+      required: true,
     },
     disabledDates: {
       type: Array as PropType<string[]>,
@@ -85,7 +85,10 @@ export default defineComponent({
       onPanelClose,
       setNewDateRange,
       updateSecondValue,
-    } = useDatePickerManagerHook(props, context);
+    } = useDatePickerManagerHook({
+      selectedDates: props.selectedDates,
+      options: props.options,
+    }, context);
 
     return {
       isPanelVisible,
