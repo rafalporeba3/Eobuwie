@@ -1,26 +1,20 @@
-import Vuex                          from 'vuex';
-import { createLocalVue, Wrapper }   from '@vue/test-utils';
-import CompositionApi                from '@vue/composition-api';
-import { createTestInstanceShallow } from '@/__tests__/factory';
-import cPrice                        from '../price.component.vue';
+import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import CompositionApi                            from '@vue/composition-api';
+import cPrice                                    from '../price.component.vue';
 
 const localVue = createLocalVue();
 localVue.use(CompositionApi);
-localVue.use(Vuex);
 
 describe('Price component', () => {
   let wrapper!: Wrapper<any>;
 
   beforeEach(() => {
-    const {
-      wrapperInstance,
-    } = createTestInstanceShallow(cPrice, {
+    wrapper = shallowMount(cPrice, {
       localVue,
       propsData: {
         price: 300,
       },
     });
-    wrapper = wrapperInstance;
   });
 
   it('should render cReservationForm component with proper class', () => {

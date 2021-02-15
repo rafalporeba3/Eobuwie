@@ -1,19 +1,16 @@
-import { createLocalVue, Wrapper }   from '@vue/test-utils';
-import Vuex                          from 'vuex';
-import CompositionApi                from '@vue/composition-api';
-import { createTestInstanceShallow } from '@/__tests__/factory';
-import cArrowRightIcon               from '@/components/icons/arrow-right.component.vue';
-import cDatePickerEditor             from '../date-picker-editor.component.vue';
+import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import CompositionApi                            from '@vue/composition-api';
+import cArrowRightIcon                           from '@/components/icons/arrow-right.component.vue';
+import cDatePickerEditor                         from '../date-picker-editor.component.vue';
 
 const localVue = createLocalVue();
 localVue.use(CompositionApi);
-localVue.use(Vuex);
 
 describe('Date picker editor component', () => {
   let wrapper!: Wrapper<any>;
 
   beforeEach(() => {
-    const { wrapperInstance } = createTestInstanceShallow(cDatePickerEditor, {
+    wrapper = shallowMount(cDatePickerEditor, {
       localVue,
       propsData: {
         startPlaceholder: 'Start placeholder',
@@ -21,8 +18,6 @@ describe('Date picker editor component', () => {
         isPanelVisible: false,
       },
     });
-
-    wrapper = wrapperInstance;
   });
 
   it('should render cDatePickerEditor component with correct class', () => {
@@ -38,14 +33,18 @@ describe('Date picker editor component', () => {
   });
 
   it('should display correct placeholders', () => {
-    expect(wrapper.props('startPlaceholder')).toBe('Start placeholder');
-    expect(wrapper.props('endPlaceholder')).toBe('End placeholder');
+    expect(wrapper.props('startPlaceholder'))
+      .toBe('Start placeholder');
+    expect(wrapper.props('endPlaceholder'))
+      .toBe('End placeholder');
   });
 
   it('should display default placeholders when placeholder props are not defined', async () => {
     await wrapper.setProps({ startPlaceholder: undefined, endPlaceholder: undefined });
-    expect(wrapper.props('startPlaceholder')).toBe('Start');
-    expect(wrapper.props('endPlaceholder')).toBe('End');
+    expect(wrapper.props('startPlaceholder'))
+      .toBe('Start');
+    expect(wrapper.props('endPlaceholder'))
+      .toBe('End');
   });
 
   it('should contain cArrowRightIcon', () => {

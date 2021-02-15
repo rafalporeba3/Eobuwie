@@ -1,23 +1,20 @@
-import { createLocalVue, Wrapper }   from '@vue/test-utils';
-import Vuex                          from 'vuex';
-import CompositionApi                from '@vue/composition-api';
-import { createTestInstanceShallow } from '@/__tests__/factory';
-import { clickOutsideDirective }     from '@/directives/click-outside/click-outside.directive';
-import cDatePicker                   from '../date-picker.component.vue';
-import cDatePickerWrapper            from '../components/wrapper/date-picker-wrapper.component.vue';
-import cDatePickerEditor             from '../components/editor/date-picker-editor.component.vue';
-import cDatePickerPanel              from '../components/panel/date-picker-panel.component.vue';
+import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import CompositionApi                            from '@vue/composition-api';
+import { clickOutsideDirective }                 from '@/directives/click-outside/click-outside.directive';
+import cDatePicker                               from '../date-picker.component.vue';
+import cDatePickerWrapper                        from '../components/wrapper/date-picker-wrapper.component.vue';
+import cDatePickerEditor                         from '../components/editor/date-picker-editor.component.vue';
+import cDatePickerPanel                          from '../components/panel/date-picker-panel.component.vue';
 
 const localVue = createLocalVue();
 localVue.use(CompositionApi);
-localVue.use(Vuex);
 localVue.directive('click-outside', clickOutsideDirective);
 
 describe('Date picker component', () => {
   let wrapper!: Wrapper<any>;
 
   beforeEach(() => {
-    const { wrapperInstance } = createTestInstanceShallow(cDatePicker, {
+    wrapper = shallowMount(cDatePicker, {
       localVue,
       propsData: {
         options: {},
@@ -25,8 +22,6 @@ describe('Date picker component', () => {
         disabledDates: [],
       },
     });
-
-    wrapper = wrapperInstance;
   });
 
   afterEach(() => {

@@ -6,9 +6,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api';
-import { useGlobals }                from '@/hooks/use-globals';
-import { Computed }                  from '@/types';
+import { defineComponent } from '@vue/composition-api';
+import { CURRENCY }        from '@/variables/global.variables';
 
 export default defineComponent({
   name: 'cPrice',
@@ -19,11 +18,8 @@ export default defineComponent({
     },
   },
   setup() {
-    const { store } = useGlobals();
-    const currency: Computed<string> = computed(() => store.state.currency);
-
     return {
-      currency,
+      currency: CURRENCY,
     };
   },
 });

@@ -1,18 +1,15 @@
-import { createLocalVue, Wrapper }   from '@vue/test-utils';
-import Vuex                          from 'vuex';
-import CompositionApi                from '@vue/composition-api';
-import { createTestInstanceShallow } from '@/__tests__/factory';
-import cDatePickerWrapper            from '../date-picker-wrapper.component.vue';
+import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import CompositionApi                            from '@vue/composition-api';
+import cDatePickerWrapper                        from '../date-picker-wrapper.component.vue';
 
 const localVue = createLocalVue();
 localVue.use(CompositionApi);
-localVue.use(Vuex);
 
 describe('Date picker wrapper component', () => {
   let wrapper!: Wrapper<any>;
 
   beforeEach(() => {
-    const { wrapperInstance } = createTestInstanceShallow(cDatePickerWrapper, {
+    wrapper = shallowMount(cDatePickerWrapper, {
       localVue,
       propsData: {
         title: 'Test',
@@ -21,8 +18,6 @@ describe('Date picker wrapper component', () => {
         default: '<span>Test slot</span>',
       },
     });
-
-    wrapper = wrapperInstance;
   });
 
   it('should render cDatePickerWrapper component with correct class', () => {

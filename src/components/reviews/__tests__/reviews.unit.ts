@@ -1,28 +1,22 @@
-import { createLocalVue, Wrapper, WrapperArray } from '@vue/test-utils';
-import Vuex                                      from 'vuex';
-import { createTestInstanceShallow }             from '@/__tests__/factory';
-import CompositionApi                            from '@vue/composition-api';
-import cStarIcon                                 from '@/components/icons/star.component.vue';
-import cReviews                                  from '../reviews.component.vue';
+import { createLocalVue, shallowMount, Wrapper, WrapperArray } from '@vue/test-utils';
+import CompositionApi                                          from '@vue/composition-api';
+import cStarIcon                                               from '@/components/icons/star.component.vue';
+import cReviews                                                from '../reviews.component.vue';
 
 const localVue = createLocalVue();
 localVue.use(CompositionApi);
-localVue.use(Vuex);
 
 describe('Reviews component', () => {
   let wrapper!: Wrapper<any>;
 
   beforeEach(() => {
-    const {
-      wrapperInstance,
-    } = createTestInstanceShallow(cReviews, {
+    wrapper = shallowMount(cReviews, {
       localVue,
       propsData: {
         rating: 3.5,
         reviews: 123,
       },
     });
-    wrapper = wrapperInstance;
   });
 
   it('should render cReviews component with proper class', () => {

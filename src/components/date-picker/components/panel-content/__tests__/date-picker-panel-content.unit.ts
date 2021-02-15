@@ -20,6 +20,8 @@ describe('Date picker panel content', () => {
       propsData: {
         currentMonthDays,
         isPanelVisible: true,
+        currentMonth: 0,
+        currentYear: 2021,
       },
     });
   });

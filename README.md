@@ -20,8 +20,6 @@ npm install
 ## Core libraries
 - [Vue](https://vuejs.org/) - Framework for building user interfaces.
 - [Vue composition API](https://vue-composition-api-rfc.netlify.com/) - A set of additive, function-based APIs that allow flexible composition of component logic.
-- [Vuex](https://vuex.vuejs.org/) - State management pattern + library for Vue.js applications.
-- [Router](https://router.vuejs.org/) - Router for Vue.js.
 - [TypeScript](https://www.typescriptlang.org/index.html) - Typed superset of JavaScript that compiles to plain JavaScript.
 - [Vue Test Utils](https://vue-test-utils.vuejs.org/) - An official unit testing utility library for Vue.js.
 - [Jest](https://jestjs.io/en/) - Delightful JavaScript Testing Framework. 
