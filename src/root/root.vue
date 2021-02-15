@@ -60,7 +60,7 @@ export default defineComponent({
   min-width: 100vh;
   align-items: flex-start;
   width: 100%;
-  margin: $f144;
+  margin: $f144 0 0 0;
   justify-content: center;
 }
 .c-visualization {

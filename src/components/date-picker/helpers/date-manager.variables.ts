@@ -49,3 +49,8 @@ export const weekDayNames: string[] = [
 ];
 
 export const FORMAT = 'yyyy-MM-dd';
+
+export enum DatePickerPlaceholders {
+  START = 'Check In',
+  END = 'Check Out'
+}

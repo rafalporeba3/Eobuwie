@@ -3,13 +3,12 @@
                          class="c-date-picker">
 
     <c-date-picker-editor ref="date-picker-editor"
-                          v-bind="options"
+                          v-bind="datePickerOptions"
                           :is-panel-visible="isPanelVisible"
                           @click.native.stop="changePanelVisibility" />
 
     <c-date-picker-panel v-show="isPanelVisible"
                          ref="date-picker-panel"
-                         v-bind="$props"
                          v-click-outside="{
                             excludeElements: [ 'date-picker-editor', 'date-picker-panel' ],
                             handler: 'onPanelClose'
@@ -23,8 +22,8 @@
       </template>
 
       <template #content>
-        <c-date-picker-panel-content :current-month-days="getCurrentMonthDays"
-                                     :current-month="currentMonth"
+        <c-date-picker-panel-content :current-month="currentMonth"
+                                     :current-month-days="getCurrentMonthDays"
                                      :current-year="currentYear"
                                      :disabled-dates="disabledDates"
                                      :is-panel-visible="isPanelVisible"
@@ -36,17 +35,15 @@
 </template>
 
 <script lang="ts">
-import { cloneDeep }                           from 'lodash-es';
-import { defineComponent, PropType, Ref, ref } from '@vue/composition-api';
-import { DatePickerOptions }                   from '@/components/date-picker/date-picker.types';
-import { isStartDateGraterThanEndDate }        from '@/components/date-picker/helpers/date-manager.helper';
-import { useDayManagerHook }                   from '@/components/date-picker/hooks/day-manager.hook';
-import cDatePickerWrapper                      from './components/wrapper/date-picker-wrapper.component.vue';
-import cDatePickerEditor                       from './components/editor/date-picker-editor.component.vue';
-import cDatePickerPanel                        from './components/panel/date-picker-panel.component.vue';
-import cDatePickerPanelHeader                  from './components/panel-header/date-picker-panel-header.component.vue';
-import cDatePickerPanelContent                 from './components/panel-content/date-picker-panel-content.component.vue';
-import { useDateManagerHook }                  from './hooks/date-manager.hook';
+import { defineComponent, PropType } from '@vue/composition-api';
+import cDatePickerWrapper            from './components/wrapper/date-picker-wrapper.component.vue';
+import cDatePickerEditor             from './components/editor/date-picker-editor.component.vue';
+import cDatePickerPanel              from './components/panel/date-picker-panel.component.vue';
+import cDatePickerPanelHeader        from './components/panel-header/date-picker-panel-header.component.vue';
+import cDatePickerPanelContent       from './components/panel-content/date-picker-panel-content.component.vue';
+import { useDateManagerHook }        from './hooks/date-manager.hook';
+import { useDatePickerManagerHook }  from './hooks/date-picker-manager.hook';
+import { BasicDatePickerOptions }    from './date-picker.types';
 
 export default defineComponent({
   name: 'cDatePicker',
@@ -59,7 +56,7 @@ export default defineComponent({
   },
   props: {
     options: {
-      type: Object as PropType<DatePickerOptions>,
+      type: Object as PropType<BasicDatePickerOptions>,
       required: false,
     },
     disabledDates: {
@@ -81,50 +78,14 @@ export default defineComponent({
     } = useDateManagerHook();
 
     const {
-      isDisabledDate,
-    } = useDayManagerHook(props);
-
-    const selectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
-    const lastSelectedDateRange: Ref<string[]> = ref(cloneDeep(props.selectedDates));
-    const isPanelVisible: Ref<boolean> = ref(false);
-
-    const changePanelVisibility = (): void => {
-      isPanelVisible.value = !isPanelVisible.value;
-    };
-
-    const onPanelClose = (): void => {
-      isPanelVisible.value = false;
-
-      if (selectedDateRange.value.length === 1) {
-        selectedDateRange.value = cloneDeep(lastSelectedDateRange.value);
-      }
-    };
-
-    const setNewDateRange = (date: string): void => {
-      if (selectedDateRange.value.length === 2) {
-        lastSelectedDateRange.value = cloneDeep(selectedDateRange.value);
-        selectedDateRange.value = [];
-      }
-
-      if (!selectedDateRange.value.length) {
-        selectedDateRange.value = [ date ];
-      } else if (selectedDateRange.value.length === 1 && !isDisabledDate(selectedDateRange.value, date)) {
-        selectedDateRange.value = [ selectedDateRange.value[ 0 ], date ];
-
-        if (isStartDateGraterThanEndDate(selectedDateRange.value)) {
-          selectedDateRange.value = [ selectedDateRange.value[ 1 ], selectedDateRange.value[ 0 ] ];
-        }
-
-        context.emit('onSelectedDateUpdate', selectedDateRange.value);
-        onPanelClose();
-      }
-    };
-
-    const updateSecondValue = (date: string): void => {
-      if (selectedDateRange.value[ 1 ] !== date) {
-        selectedDateRange.value = [ selectedDateRange.value[ 0 ], date ];
-      }
-    };
+      isPanelVisible,
+      selectedDateRange,
+      datePickerOptions,
+      changePanelVisibility,
+      onPanelClose,
+      setNewDateRange,
+      updateSecondValue,
+    } = useDatePickerManagerHook(props, context);
 
     return {
       isPanelVisible,
@@ -134,6 +95,7 @@ export default defineComponent({
       onPreviousClick,
       onNextClick,
       selectedDateRange,
+      datePickerOptions,
       changePanelVisibility,
       onPanelClose,
       setNewDateRange,

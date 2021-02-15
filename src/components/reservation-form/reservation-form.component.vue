@@ -27,7 +27,6 @@ import cSeparator                              from '@/components/separator/sepa
 import cDatePicker                             from '@/components/date-picker/date-picker.component.vue';
 import cButton                                 from '@/components/button/button.component.vue';
 import { ReservationFormConfiguration }        from '@/components/reservation-form/reservation-form.types';
-import { DatePickerOptions }                   from '@/components/date-picker/date-picker.types';
 
 export default defineComponent({
   name: 'cReservationForm',
@@ -47,9 +46,7 @@ export default defineComponent({
   setup(props, context) {
     const selectedDates: Ref<string[]> = ref([]);
 
-    const datePickerOptions: DatePickerOptions = {
-      endPlaceholder: 'Check Out',
-      startPlaceholder: 'Check In',
+    const datePickerOptions: BasicDatePickerOptions = {
       title: 'Dates',
     };
 

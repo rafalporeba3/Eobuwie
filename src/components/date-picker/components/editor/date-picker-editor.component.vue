@@ -2,17 +2,21 @@
   <div :class="{'c-date-picker-editor--active': isPanelVisible }"
        class="c-date-picker-editor">
 
-    <span class="c-date-picker-editor__placeholder">{{ startPlaceholder }}</span>
-    <c-arrow-right-icon />
-    <span class="c-date-picker-editor__placeholder">{{ endPlaceholder }}</span>
+    <span :class="getClassIfElementIsActive(startPlaceholder)"
+          class="c-date-picker-editor__placeholder">{{ startPlaceholder }}</span>
 
+    <c-arrow-right-icon />
+
+    <span :class="getClassIfElementIsActive(endPlaceholder)"
+          class="c-date-picker-editor__placeholder">{{ endPlaceholder }}</span>
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
-import cArrowRightIcon     from '@/components/icons/arrow-right.component.vue';
+import { defineComponent }        from '@vue/composition-api';
+import cArrowRightIcon            from '@/components/icons/arrow-right.component.vue';
+import { DatePickerPlaceholders } from '../../helpers/date-manager.variables';
 
 export default defineComponent({
   name: 'cDatePickerEditor',
@@ -22,16 +26,24 @@ export default defineComponent({
   props: {
     startPlaceholder: {
       type: String,
-      default: 'Start',
+      default: DatePickerPlaceholders.START,
     },
     endPlaceholder: {
       type: String,
-      default: 'End',
+      default: DatePickerPlaceholders.END,
     },
     isPanelVisible: {
       type: Boolean,
       default: false,
     },
+  },
+  setup() {
+    const isPlaceholderActive = (placeholder: string): boolean => ![ DatePickerPlaceholders.START, DatePickerPlaceholders.END ].includes(placeholder);
+    const getClassIfElementIsActive = (placeholder: string): string | null => (isPlaceholderActive(placeholder) ? 'c-date-picker-editor__placeholder--active' : null);
+
+    return {
+      getClassIfElementIsActive,
+    };
   },
 });
 </script>
@@ -65,9 +77,9 @@ export default defineComponent({
     padding: $f2 $f5;
     flex: 0 0 40%;
 
-    &:first-of-type {
+    &--active {
       background-color: rgba(var(--primary-green), .4);
-      color: rgb(var(--black));
+      color: rgb(var(--green-500));
     }
   }
 }

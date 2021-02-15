@@ -1,6 +1,7 @@
 import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
 import CompositionApi                            from '@vue/composition-api';
 import cArrowRightIcon                           from '@/components/icons/arrow-right.component.vue';
+import { DatePickerPlaceholders }                from '@/components/date-picker/helpers/date-manager.variables';
 import cDatePickerEditor                         from '../date-picker-editor.component.vue';
 
 const localVue = createLocalVue();
@@ -42,9 +43,9 @@ describe('Date picker editor component', () => {
   it('should display default placeholders when placeholder props are not defined', async () => {
     await wrapper.setProps({ startPlaceholder: undefined, endPlaceholder: undefined });
     expect(wrapper.props('startPlaceholder'))
-      .toBe('Start');
+      .toBe(DatePickerPlaceholders.START);
     expect(wrapper.props('endPlaceholder'))
-      .toBe('End');
+      .toBe(DatePickerPlaceholders.END);
   });
 
   it('should contain cArrowRightIcon', () => {

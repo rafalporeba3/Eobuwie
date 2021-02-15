@@ -20,9 +20,9 @@ export const useDayManagerHook = (props: {
   currentYear?: number;
   currentMonth?: number;
 }): UseDayManagerHook => {
+  const hoverSelectedDates: Ref<string[]> = ref([]);
   const disabledDates: Computed<string[]> = computed(() => getEachDay(props.disabledDates));
   const selectedDates: Computed<string[]> = computed(() => getEachDay(props.selectedDates));
-  const hoverSelectedDates: Ref<string[]> = ref([]);
   const currentMonth: Computed<string[]> = computed(() => generateCurrentMonth(props.currentYear ?? 0, props.currentMonth ?? 0));
 
   const isDisabled = (date: string): boolean => disabledDates.value.includes(date);
