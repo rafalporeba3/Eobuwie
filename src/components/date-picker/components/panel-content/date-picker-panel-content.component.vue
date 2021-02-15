@@ -7,11 +7,12 @@
     <c-date-picker-day v-for="date in currentMonthDays"
                        :key="date"
                        :date="date"
-                       :is-today="isToday(date)"
                        :is-disabled="isDisabled(date)"
                        :is-end-date="isEndDate(date)"
+                       :is-date-current-month="isDateCurrentMonth(date)"
                        :is-selected="isSelected(date)"
                        :is-start-date="isStartDate(date)"
+                       :is-today="isToday(date)"
                        @mouseenter.native="updateHoverSelectedDates(date)"
                        @click.native="onDateClick(date)" />
   </fragment>
@@ -22,7 +23,7 @@ import { defineComponent, PropType, watch } from '@vue/composition-api';
 import cDatePickerDayOfWeek                 from '../day-of-week/date-picker-day-of-week.component.vue';
 import cDatePickerDay                       from '../day/date-picker-day.component.vue';
 import { useDayManagerHook }                from '../../hooks/day-manager.hook';
-import { weekDayNames }                        from '../../helpers/date-manager.variables';
+import { weekDayNames }                     from '../../helpers/date-manager.variables';
 
 export default defineComponent({
   name: 'cDatePickerPanelContent',
@@ -33,6 +34,14 @@ export default defineComponent({
   props: {
     currentMonthDays: {
       type: Array as PropType<string[]>,
+      required: true,
+    },
+    currentMonth: {
+      type: Number,
+      required: true,
+    },
+    currentYear: {
+      type: Number,
       required: true,
     },
     disabledDates: {
@@ -55,6 +64,7 @@ export default defineComponent({
       isToday,
       isEndDate,
       isStartDate,
+      isDateCurrentMonth,
       updateHoverSelectedDates,
       clearHoverSelectedDates,
     } = useDayManagerHook(props);
@@ -77,6 +87,7 @@ export default defineComponent({
       isToday,
       isEndDate,
       isStartDate,
+      isDateCurrentMonth,
       updateHoverSelectedDates,
       onDateClick,
     };

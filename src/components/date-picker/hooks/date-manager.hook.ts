@@ -1,6 +1,6 @@
 import { getMonth, getYear }    from 'date-fns';
 import { computed, Ref, ref }   from '@vue/composition-api';
-import { generateCurrentMonth } from '@/components/date-picker/helpers/date-manager.helper';
+import { generateFullCurrentMonth } from '@/components/date-picker/helpers/date-manager.helper';
 import { monthNames }           from '@/components/date-picker/helpers/date-manager.variables';
 import { Computed }             from '@/types';
 
@@ -16,7 +16,7 @@ export const useDateManagerHook = (): UseDateManagerHook => {
   const currentMonth: Ref<number> = ref(getMonth(new Date()));
   const currentYear: Ref<number> = ref(getYear(new Date()));
 
-  const getCurrentMonthDays: Computed<string[]> = computed(() => generateCurrentMonth(currentYear.value, currentMonth.value));
+  const getCurrentMonthDays: Computed<string[]> = computed(() => generateFullCurrentMonth(currentYear.value, currentMonth.value));
 
   const onNextClick = (): void => {
     if (currentMonth.value === monthNames.length - 1) {

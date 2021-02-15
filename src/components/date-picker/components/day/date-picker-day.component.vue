@@ -5,6 +5,7 @@
           'c-date-picker-day--disabled': isDisabled,
           'c-date-picker-day--start': isStartDate,
           'c-date-picker-day--end': isEndDate,
+          'c-date-picker-day--current': isDateCurrentMonth,
        }"
        class="c-date-picker-day">
 
@@ -44,6 +45,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    isDateCurrentMonth: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props) {
     const getDateDay: Computed<number> = computed(() => getDate(new Date(props.date)));
@@ -71,6 +76,10 @@ export default defineComponent({
 
   &:not(&--disabled):not(&--selected):hover {
     color: rgb(var(--primary-green));
+  }
+
+  &:not(&--current) {
+    color: rgb(var(--grey-500));
   }
 
   &--end {

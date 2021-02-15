@@ -18,9 +18,19 @@ export const getEachDay = (range: string[]): string[] => {
 };
 
 export const generateCurrentMonth = (currentYear: number, currentMonth: number): string[] => {
+  const allDaysInMonth: string[] = [];
+  const daysInMonth: number = getDaysInMonth(new Date(currentYear, currentMonth));
+
+  for (let i = 1; i <= daysInMonth; i += 1) {
+    allDaysInMonth.push(formatNewDate(currentYear, currentMonth, i));
+  }
+
+  return allDaysInMonth;
+};
+
+export const generateFullCurrentMonth = (currentYear: number, currentMonth: number): string[] => {
   const SUNDAY = 0;
   const SATURDAY = 6;
-  const allDaysInMonth: string[] = [];
   const allDaysInPrevMonth: string[] = [];
   const allDaysInNextMonth: string[] = [];
 
@@ -43,13 +53,9 @@ export const generateCurrentMonth = (currentYear: number, currentMonth: number):
     }
   }
 
-  for (let i = 1; i <= daysInMonth; i += 1) {
-    allDaysInMonth.push(formatNewDate(currentYear, currentMonth, i));
-  }
-
   return [
     ...allDaysInPrevMonth.reverse(),
-    ...allDaysInMonth,
+    ...generateCurrentMonth(currentYear, currentMonth),
     ...allDaysInNextMonth,
   ];
 };

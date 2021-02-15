@@ -24,6 +24,8 @@
 
       <template #content>
         <c-date-picker-panel-content :current-month-days="getCurrentMonthDays"
+                                     :current-month="currentMonth"
+                                     :current-year="currentYear"
                                      :disabled-dates="disabledDates"
                                      :is-panel-visible="isPanelVisible"
                                      :selected-dates="selectedDateRange"
